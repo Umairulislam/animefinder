@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AnimeFinder</title>
+    <link href="/styles/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include('partials/header') %>
+
+    <div class="container">
+      <h1>AnimeFinder</h1>
+      <form action="/search" method="GET">
+        <input
+          type="text"
+          name="q"
+          placeholder="Search for an anime..."
+          required
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      <div>
+        <% if (results && results.length > -1) { %>
+        <div class="results">
+          <% results.forEach(anime => { %>
+          <div class="anime">
+            <img
+              src="<%= anime.images.jpg.image_url %>"
+              alt="<%= anime.title %>"
+              width="200"
+              height="300"
+            />
+            <h2><a href="/anime/<%= anime.mal_id %>"><%= anime.title %></a></h2>
+            <p><strong>Episodes:</strong> <%= anime.episodes %></p>
+          </div>
+          <% }) %>
+        </div>
+        <% } else {%>
+        <p>No results found</p>
+        <% } %>
+      </div>
+    </div>
+    <%- include('partials/footer') %>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= anime.title %> - AnimeFinder</title>
+    <link href="/styles/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include('partials/header') %>
+    <div class="container">
+      <div class="anime-details">
+        <h1><%= anime.title %></h1>
+        <img src="<%= anime.images.jpg.image_url %>" alt="<%= anime.title %>" />
+        <div class="anime-info">
+          <p><strong>Name:</strong> <%= anime.title %></p>
+          <p><strong>Japanese Name:</strong> <%= anime.title_japanese %></p>
+          <p><strong>Type:</strong> <%= anime.type %></p>
+          <p><strong>Episodes:</strong> <%= anime.episodes %></p>
+          <p><strong>Status:</strong> <%= anime.status %></p>
+          <p><strong>Aired:</strong> <%= anime.aired.string %></p>
+          <p><strong>Duration:</strong> <%= anime.duration %></p>
+          <p><strong>Rating:</strong> <%= anime.rating %></p>
+          <p><strong>Score:</strong> <%= anime.score %></p>
+          <p><strong>Rank:</strong> <%= anime.rank %></p>
+          <p>
+            <strong>Genres:</strong>
+            <% anime.genres.forEach(genre => { %> <%= genre.name %><% if
+            (anime.genres.indexOf(genre) !== anime.genres.length - 1) { %>, <% }
+            %> <% }) %>
+          </p>
+          <p>
+            <strong>Producers:</strong>
+            <% anime.producers.forEach(producer => { %> <%= producer.name %><%
+            if (anime.producers.indexOf(producer) !== anime.producers.length -
+            1) { %>, <% } %> <% }) %>
+          </p>
+          <p>
+            <strong>Licensors:</strong>
+            <% anime.licensors.forEach(licensor => { %> <%= licensor.name %><%
+            if (anime.licensors.indexOf(licensor) !== anime.licensors.length -
+            1) { %>, <% } %> <% }) %>
+          </p>
+          <p>
+            <strong>Studios:</strong>
+            <% anime.studios.forEach(studio => { %> <%= studio.name %><% if
+            (anime.studios.indexOf(studio) !== anime.studios.length - 1) { %>,
+            <% } %> <% }) %>
+          </p>
+          <p class="description">
+            <strong>Description:</strong> <%= anime.synopsis %>
+          </p>
+          <a href="<%= anime.url %>" target="_blank" class="more-details"
+            >More Details</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <%- include('partials/footer') %>
+  </body>
+</html>
